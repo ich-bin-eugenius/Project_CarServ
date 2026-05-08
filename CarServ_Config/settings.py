@@ -55,13 +55,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "home.apps.HomeConfig",
-    "about.apps.AboutConfig",
-    "services.apps.ServicesConfig",
-    "contact.apps.ContactConfig",
-    "pages.apps.PagesConfig",
-    "account.apps.AccountConfig",
-    "manager.apps.ManagerConfig"
+    "apps.core",  # home, about, contact and services
+    "apps.pages",
+    "apps.account",
+    "apps.manager"
 ]
 
 MIDDLEWARE = [
@@ -88,7 +85,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'contact.context_processors.contacts',
+                'apps.core.context_processors.contacts',
             ],
         },
     },

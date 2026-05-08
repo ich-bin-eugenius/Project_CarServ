@@ -16,19 +16,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from pages.views import index_404, index_team, index_testimonial
-from account.views import RegisterView, MyLoginView, user_logout
-from contact.views import subscribe
+from apps.pages.views import index_404, index_team, index_testimonial
+from apps.account.views import RegisterView, MyLoginView, user_logout
+from apps.core.views import subscribe
 from django.conf.urls.static import static
 from CarServ_Config import settings
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('', include('home.urls')),
-    path('about/', include('about.urls')),
-    path('service/', include('services.urls')),
-    path('contact/', include('contact.urls')),
+    path('', include('apps.core.urls')),
 
     path('404/', index_404, name='index_404'),
     path('team/', index_team, name='index_team'),
@@ -39,10 +37,10 @@ urlpatterns = [
     path('logout/', user_logout, name='logout'),
     path('subscribe/', subscribe, name='subscribe'),
 
-    path('manager/', include('manager.urls')),
+    path('manager/', include('apps.manager.urls')),
 ]
 
-handler404 = 'pages.views.index_404'
+handler404 = 'apps.pages.views.index_404'
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
