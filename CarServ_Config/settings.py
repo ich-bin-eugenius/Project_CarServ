@@ -42,8 +42,8 @@ DB_PASSWORD = os.getenv('DB_PASSWORD')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-# DEBUG = True if os.getenv('DEBUG') == 'True' else False
-DEBUG = True
+DEBUG = True if os.getenv('DEBUG') == 'True' else False
+
 ALLOWED_HOSTS = ['*']
 
 # Application definition
@@ -159,6 +159,7 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
