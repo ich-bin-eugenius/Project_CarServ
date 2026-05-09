@@ -17,7 +17,7 @@ def index_404(request, exception=None) -> HttpResponse:
         HttpResponse: Response with rendered '404.html' template.
     """
 
-    return render(request, 'apps/404.html', status=404)
+    return render(request, 'pages/404.html', status=404)
 
 
 def index_team(request) -> HttpResponse:
@@ -37,7 +37,7 @@ def index_team(request) -> HttpResponse:
     context = {
         'technicians': technicians
     }
-    return render(request, 'apps/team.html', context=context)
+    return render(request, 'pages/team.html', context=context)
 
 
 def index_testimonial(request) -> HttpResponse:
@@ -57,4 +57,4 @@ def index_testimonial(request) -> HttpResponse:
         'testimonials': testimonials
     }
 
-    return render(request, 'apps/testimonial.html', context=context)
+    return render(request, 'pages/testimonial.html', context=context)

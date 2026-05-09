@@ -1,38 +1,11 @@
 from django.urls import path
-from .views import index
-
-
-# ------------About------------
-
-app_name = 'about'
-
-urlpatterns = [
-    path('', index, name='about'),
-]
-
-
-# ------------Contact------------
-
-app_name = 'contact'
-
-urlpatterns = [
-    path('', index, name='contact'),
-]
-
-
-# ------------Home------------
+from .views import index_home, index_about, index_services, index_contact
 
 app_name = 'home'
 
 urlpatterns = [
-    path('', index, name='home'),
-]
-
-
-# ------------Services------------
-
-app_name = 'services'
-
-urlpatterns = [
-    path('', index, name='services'),
+    path('', index_home, name='home'),
+    path('about/', index_about, name='about'),
+    path('services/', index_services, name='services'),
+    path('contact/', index_contact, name='contact'),
 ]

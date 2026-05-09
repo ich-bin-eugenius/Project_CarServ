@@ -17,7 +17,7 @@ from .models import Service
 
 # ------------About------------
 
-def index(request) -> HttpResponse:
+def index_about(request) -> HttpResponse:
     """
     A view for the about page that displays information from the About model.
 
@@ -33,12 +33,12 @@ def index(request) -> HttpResponse:
     """
 
     about = About.objects.prefetch_related("features").first()
-    return render(request, "apps/core/about.html", {"about": about})
+    return render(request, "core/about.html", {"about": about})
 
 
 # ------------Contact------------
 
-def index(request):
+def index_contact(request):
     """
     A view for the contact page.
 
@@ -59,13 +59,13 @@ def index(request):
             'message_form': form,
             'contacts': ContactInfo.objects.first()
         }
-        return render(request, 'apps/core/contact.html', context=context)
+        return render(request, 'core/contact.html', context=context)
     else:
         context = {
             'message_form': MessageFromCustomerForm(),
             'contacts': ContactInfo.objects.first()
         }
-        return render(request, 'apps/core/contact.html', context=context)
+        return render(request, 'core/contact.html', context=context)
 
 
 def subscribe(request) -> HttpResponse:
@@ -87,12 +87,12 @@ def subscribe(request) -> HttpResponse:
     else:
         form = SubscriberForm()
 
-    return render(request, 'apps/core/subscribe.html', {'subscriber_form': form})
+    return render(request, 'core/subscribe.html', {'subscriber_form': form})
 
 
 # ------------Home------------
 
-def index(request) -> HttpResponse:
+def index_home(request) -> HttpResponse:
     """
     A view for the main page that displays information from the About model.
 
@@ -109,12 +109,12 @@ def index(request) -> HttpResponse:
 
     establishment = Establishment.objects.filter(is_visible=True)
 
-    return render(request, 'apps/core/home.html', {'establishment': establishment})
+    return render(request, 'core/home.html', {'establishment': establishment})
 
 
 # ------------Services------------
 
-def index(request) -> HttpResponse:
+def index_services(request) -> HttpResponse:
     """
     A view for the service page that displays information from the Service model.
 

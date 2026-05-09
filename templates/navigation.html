@@ -9,8 +9,8 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <a href="{% url "home:home" %}" class="nav-item nav-link active">Home</a>
-                <a href="{% url "about:about" %}" class="nav-item nav-link">About</a>
-                <a href="{% url "services:services" %}" class="nav-item nav-link">Services</a>
+                <a href="{% url "home:about" %}" class="nav-item nav-link">About</a>
+                <a href="{% url "home:services" %}" class="nav-item nav-link">Services</a>
                 
                 {% if user.is_authenticated %}
                     {% for group in user.groups.all %}
@@ -38,10 +38,10 @@
                         {% endif %}
                     </div>
                 </div>
-                <a href="{% url "contact:contact" %}" class="nav-item nav-link">Contact</a>
+                <a href="{% url "home:contact" %}" class="nav-item nav-link">Contact</a>
                 <a href="{% url "subscribe" %}" class="nav-item nav-link">Subscribe</a>
             </div>
-            <a href="{% url "services:services" %}" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a>
+            <a href="{% url "home:services" %}" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Get A Quote<i class="fa fa-arrow-right ms-3"></i></a>
         </div>
     </nav>
     <!-- Navbar End -->
