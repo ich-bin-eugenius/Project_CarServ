@@ -22,7 +22,7 @@ class RegisterView(CreateView):
         success_url (str): The URL to redirect to after a successful registration.
     """
 
-    template_name = 'register.html'
+    template_name = 'account/register.html'
     form_class = RegisterForm
     success_url = '/'
 
@@ -42,7 +42,7 @@ class MyLoginView(LoginView):
         get_success_url(): Determines the URL to redirect the user after a successful login.
     """
 
-    template_name = 'login.html'
+    template_name = 'account/login.html'
 
     def get_success_url(self):
         """
