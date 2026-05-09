@@ -61,7 +61,7 @@
             <div class="col-md-6">
                 <div class="wow fadeInUp" data-wow-delay="0.2s">
                     {% if user.is_authenticated %}
-                        <form action="{% url 'contact:contact' %}" method="post">
+                        <form action="{% url 'home:contact' %}" method="post">
                             {% csrf_token %}
 
                             <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet.</p>
