@@ -1,10 +1,10 @@
 import os
 import django
-from django.contrib.auth.models import User
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'CarServ_Config.settings')
 django.setup()
 
+from django.contrib.auth.models import User
 
 username = os.getenv('DJANGO_SUPERUSER_USERNAME')
 email = os.getenv('DJANGO_SUPERUSER_EMAIL')
