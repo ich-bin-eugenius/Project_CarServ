@@ -20,6 +20,23 @@ def index_404(request, exception=None) -> HttpResponse:
     return render(request, 'pages/404.html', status=404)
 
 
+def index_500(request) -> HttpResponse:
+    """
+    A view for the error page.
+
+
+    This view simply displays the '500.html' template.
+
+    Args:
+        request (HttpRequest): Request object.
+
+    Returns:
+        HttpResponse: Response with rendered '500.html' template.
+    """
+
+    return render(request, 'pages/500.html', status=500)
+
+
 def index_team(request) -> HttpResponse:
     """
     A view for the team page.

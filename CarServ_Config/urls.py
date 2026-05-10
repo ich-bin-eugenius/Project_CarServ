@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from apps.pages.views import index_404, index_team, index_testimonial
+from apps.pages.views import index_404, index_500, index_team, index_testimonial
 from apps.account.views import RegisterView, MyLoginView, user_logout
 from apps.core.views import subscribe
 from django.conf.urls.static import static
@@ -29,6 +29,7 @@ urlpatterns = [
     path('', include('apps.core.urls')),
 
     path('404/', index_404, name='index_404'),
+    path('500/', index_500, name='index_500'),
     path('team/', index_team, name='index_team'),
     path('testimonial/', index_testimonial, name='index_testimonial'),
 
@@ -41,6 +42,7 @@ urlpatterns = [
 ]
 
 handler404 = 'apps.pages.views.index_404'
+handler500 = 'apps.pages.views.index_500'
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
