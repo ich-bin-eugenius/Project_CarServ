@@ -76,12 +76,10 @@
                         <form method="post">
                             {% csrf_token %}
                             <h3 class="mb-4">Share Your Experience</h3>
-                            <div class="row g-3">
                                 <div class="col-12">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" id="name" value="{{ user.first_name }} {{ user.last_name }}" readonly>
-                                        <label for="name">Your Name</label>
-                                    </div>
+                                        <input type="text" class="form-control" id="name" value="{{ user.username }}" readonly>
+                                        <label for="name">Username</label>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating">

@@ -63,7 +63,7 @@ def index_contact(request):
         if msg_content:
             new_msg = MessageFromCustomer(
                 user=request.user,
-                name=f"{request.user.first_name} {request.user.last_name}",
+                name=request.user.username,
                 email=request.user.email,
                 subject=msg_subject or "Feedback",
                 message=msg_content
