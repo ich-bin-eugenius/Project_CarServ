@@ -45,7 +45,7 @@ class ContactInfoAdmin(admin.ModelAdmin):
 
 @admin.register(MessageFromCustomer)
 class MessageFromCustomerAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email', 'subject', 'created_at', 'updated_at')
+    list_display = ('name', 'email', 'subject', 'created_at')
     list_filter = ('created_at', )
     list_editable = ('subject', 'email',)
 

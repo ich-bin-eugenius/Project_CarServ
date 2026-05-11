@@ -6,7 +6,8 @@ from .models import About
 
 # Contact
 from .models import ContactInfo
-from .forms import MessageFromCustomerForm, SubscriberForm
+from .forms import MessageFromCustomer, SubscriberForm
+from django.contrib import messages
 
 # Home
 from .models import Establishment
@@ -49,23 +50,34 @@ def index_contact(request):
         HttpResponse: Response with the rendered template 'contact.html'.
     """
 
-    if request.method == 'POST':
-        form = MessageFromCustomerForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('register')
+    contact_info = ContactInfo.objects.first()
+    all_messages = MessageFromCustomer.objects.all().order_by('-created_at')
 
-        context = {
-            'message_form': form,
-            'contacts': ContactInfo.objects.first()
-        }
-        return render(request, 'core/contact.html', context=context)
-    else:
-        context = {
-            'message_form': MessageFromCustomerForm(),
-            'contacts': ContactInfo.objects.first()
-        }
-        return render(request, 'core/contact.html', context=context)
+    if request.method == 'POST':
+        if not request.user.is_authenticated:
+            return redirect('login')
+
+        msg_subject = request.POST.get('subject')
+        msg_content = request.POST.get('message')
+
+        if msg_content:
+            new_msg = MessageFromCustomer(
+                user=request.user,
+                name=f"{request.user.first_name} {request.user.last_name}",
+                email=request.user.email,
+                subject=msg_subject or "Feedback",
+                message=msg_content
+            )
+            new_msg.save()
+
+            messages.success(request, 'Thank you for your opinion! Everything went well.')
+            return redirect('home:contact')
+
+    context = {
+        'contacts': contact_info,
+        'reviews': all_messages,
+    }
+    return render(request, 'core/contact.html', context)
 
 
 def subscribe(request) -> HttpResponse:

@@ -60,47 +60,51 @@
             <!-- Form -->
             <div class="col-md-6">
                 <div class="wow fadeInUp" data-wow-delay="0.2s">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <i class="fa fa-check-circle me-2"></i>
+                                {{ message }}
+                                <hr>
+                                <a href="#testimonials-section" class="alert-link">Read what others have to say</a>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
                     {% if user.is_authenticated %}
-                        <form action="{% url 'home:contact' %}" method="post">
+                        <form method="post">
                             {% csrf_token %}
-
-                            <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet.</p>
-
+                            <h3 class="mb-4">Share Your Experience</h3>
                             <div class="row g-3">
-                                <div class="col-md-6">
+                                <div class="col-12">
                                     <div class="form-floating">
-                                        {{ message_form.name }}
-                                        <label for="{{ message_form.name.id_for_label }}">Your Name</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                        {{ message_form.email }}
-                                        <label for="{{ message_form.email.id_for_label }}">Your Email</label>
+                                        <input type="text" class="form-control" id="name" value="{{ user.first_name }} {{ user.last_name }}" readonly>
+                                        <label for="name">Your Name</label>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating">
-                                        {{ message_form.subject }}
-                                        <label for="{{ message_form.subject.id_for_label }}">Subject</label>
+                                        <input type="text" name="subject" class="form-control" id="subject" placeholder="Subject" required>
+                                        <label for="subject">Subject</label>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating">
-                                        {{ message_form.message }}
-                                        <label for="{{ message_form.message.id_for_label }}">Message</label>
+                                        <textarea class="form-control" name="message" placeholder="Leave your feedback here" id="message" style="height: 150px" required></textarea>
+                                        <label for="message">Your Feedback</label>
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <button class="btn btn-primary w-100 py-3" type="submit">Send Message</button>
+                                    <button class="btn btn-primary w-100 py-3" type="submit">Submit Feedback</button>
                                 </div>
                             </div>
                         </form>
                     {% else %}
                         <div class="bg-light p-5 rounded text-center wow fadeInUp" data-wow-delay="0.2s">
                             <i class="fa fa-lock fa-3x text-primary mb-4"></i>
-                            <h3 class="mb-3">Want to get in touch?</h3>
-                            <p class="mb-4">To prevent spam, we only accept messages from registered users. Please log in to your account or create a new one.</p>
+                            <h3 class="mb-3">Want to leave a review?</h3>
+                            <p class="mb-4">To maintain the quality of our feedback, we only accept reviews from registered users. Please log in or create an account to share your experience.</p>
                             <div class="d-flex justify-content-center gap-3">
                                 <a href="{% url 'login' %}" class="btn btn-primary py-3 px-5">Login</a>
                                 <a href="{% url 'register' %}" class="btn btn-outline-primary py-3 px-5">Register</a>
@@ -109,7 +113,33 @@
                     {% endif %}
                 </div>
             </div>
+
+            <div class="col-12 mt-5" id="testimonials-section">
+                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                    <h6 class="text-primary text-uppercase">// Customer Reviews //</h6>
+                    <h1 class="mb-5">What Our Clients Say</h1>
+                </div>
+                <div class="row g-4">
+                    {% if reviews %}
+                        {% for review in reviews %}
+                            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
+                                <div class="testimonial-item bg-light p-4 rounded h-100">
+                                    <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
+                                    <h5 class="mb-1">{{ review.name }}</h5>
+                                    <small class="text-uppercase text-muted">{{ review.created_at|date:"M d, Y" }}</small>
+                                    <p class="mt-3 mb-0" style="font-style: italic;">"{{ review.message }}"</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="col-12 text-center bg-light p-5 rounded shadow-sm">
+                            <p class="mb-3">Currently, there are no reviews yet. Be the first to share your thoughts!</p>
+                            <a href="#message" class="btn btn-primary">Write a Review</a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 {% endblock %}
