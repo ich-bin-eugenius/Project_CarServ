@@ -1,6 +1,5 @@
 {% load static %}
 
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -42,17 +41,19 @@
         </div>
     </div>
     <!-- Spinner End -->
-    
-    {% include 'header.html' %}
-    
-    {% include 'navigation.html' %}
-    
+
+    {% if not hide %}
+        {% include 'header.html' %}
+        {% include 'navigation.html' %}
+    {% endif %}
+
     {% block content %}
 
     {% endblock %}
-    
-    {% include 'footer.html' %}
-    
+
+    {% if not hide %}
+        {% include 'footer.html' %}
+    {% endif %}
     
     <!-- JavaScript Libraries -->
     <script src=" https://code.jquery.com/jquery-3.4.1.min.js"></script>

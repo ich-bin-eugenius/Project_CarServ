@@ -70,7 +70,7 @@
                 </div>
                 <div class="col-lg-6">
                     <h6 class="text-primary text-uppercase">// About Us //</h6>
-                    <h1 class="mb-4"><span class="text-primary">CarServ</span> Eugene Zavirukha - Diploma work - 29.08.2024</h1>
+                    <h1 class="mb-4"><span class="text-primary">CarServ</span> Eugene Zavirukha - Diploma work - 29.08.2024 (Remastered - 13.05.2026)</h1>
                     <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
                     <div class="row g-4 mb-3 pb-3">
                         <div class="col-12 wow fadeIn" data-wow-delay="0.1s">
@@ -152,38 +152,49 @@
                 <h1 class="mb-5">Our Clients Say!</h1>
             </div>
             <div class="owl-carousel testimonial-carousel position-relative">
-                <div class="testimonial-item text-center">
-                    <img class="bg-light rounded-circle p-2 mx-auto mb-3" src="{% static "img/testimonial-1.jpg" %}" alt="" style="width: 80px; height: 80px;">
-                    <h5 class="mb-0">Client Name</h5>
-                    <p>Profession</p>
-                    <div class="testimonial-text bg-light text-center p-4">
-                    <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
+
+                {% if testimonials %}
+                    {% for testimonial in testimonials %}
+                        <div class="testimonial-item text-center">
+                            {% if testimonial.photo %}
+                                <img class="bg-light rounded-circle p-2 mx-auto mb-3" src="{{ testimonial.photo.url }}" alt="{{ testimonial.name }}" style="width: 80px; height: 80px;">
+                            {% else %}
+                                 <img class="bg-light rounded-circle p-2 mx-auto mb-3" src="{% static 'img/testimonial-1.jpg' %}" alt="" style="width: 80px; height: 80px;">
+                            {% endif %}
+                            <h5 class="mb-0">{{ testimonial.name }}</h5>
+                            <div class="testimonial-text bg-light text-center p-4">
+                                <p class="mb-0">{{ testimonial.description }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                {% else %}
+                    <div class="testimonial-item text-center">
+                        <img class="bg-light rounded-circle p-2 mx-auto mb-3" src="{% static 'img/testimonial-1.jpg' %}" alt="" style="width: 80px; height: 80px;">
+                        <h5 class="mb-0">Client Name</h5>
+                        <p>Profession</p>
+                        <div class="testimonial-text bg-light text-center p-4">
+                            <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="testimonial-item text-center">
-                    <img class="bg-light rounded-circle p-2 mx-auto mb-3" src="{% static "img/testimonial-2.jpg" %}" alt="" style="width: 80px; height: 80px;">
-                    <h5 class="mb-0">Client Name</h5>
-                    <p>Profession</p>
-                    <div class="testimonial-text bg-light text-center p-4">
-                    <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
+                    <div class="testimonial-item text-center">
+                        <img class="bg-light rounded-circle p-2 mx-auto mb-3" src="{% static 'img/testimonial-2.jpg' %}" alt="" style="width: 80px; height: 80px;">
+                        <h5 class="mb-0">Client Name</h5>
+                        <p>Profession</p>
+                        <div class="testimonial-text bg-light text-center p-4">
+                            <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="testimonial-item text-center">
-                    <img class="bg-light rounded-circle p-2 mx-auto mb-3" src="{% static "img/testimonial-3.jpg" %}" alt="" style="width: 80px; height: 80px;">
-                    <h5 class="mb-0">Client Name</h5>
-                    <p>Profession</p>
-                    <div class="testimonial-text bg-light text-center p-4">
-                    <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
+                    <div class="testimonial-item text-center">
+                        <img class="bg-light rounded-circle p-2 mx-auto mb-3" src="{% static 'img/testimonial-3.jpg' %}" alt="" style="width: 80px; height: 80px;">
+                        <h5 class="mb-0">Client Name</h5>
+                        <p>Profession</p>
+                        <div class="testimonial-text bg-light text-center p-4">
+                            <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="testimonial-item text-center">
-                    <img class="bg-light rounded-circle p-2 mx-auto mb-3" src="{% static "img/testimonial-4.jpg" %}" alt="" style="width: 80px; height: 80px;">
-                    <h5 class="mb-0">Client Name</h5>
-                    <p>Profession</p>
-                    <div class="testimonial-text bg-light text-center p-4">
-                    <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
-                    </div>
-                </div>
+                {% endif %}
+
             </div>
         </div>
     </div>

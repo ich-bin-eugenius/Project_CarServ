@@ -17,7 +17,7 @@ def index_404(request, exception=None) -> HttpResponse:
         HttpResponse: Response with rendered '404.html' template.
     """
 
-    return render(request, 'pages/404.html', status=404)
+    return render(request, 'pages/404.html', {'hide': True}, status=404)
 
 
 def index_500(request) -> HttpResponse:
@@ -34,7 +34,7 @@ def index_500(request) -> HttpResponse:
         HttpResponse: Response with rendered '500.html' template.
     """
 
-    return render(request, 'pages/500.html', status=500)
+    return render(request, 'pages/500.html', {'hide': True}, status=500)
 
 
 def index_team(request) -> HttpResponse:
